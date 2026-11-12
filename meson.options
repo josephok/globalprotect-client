@@ -1,0 +1,8 @@
+option('vpnc_script', type : 'string', value : '/etc/vpnc/vpnc-script',
+       description : 'Default path of the vpnc-compatible routing script')
+option('external_browser', type : 'string', value : '/usr/bin/xdg-open',
+       description : 'Default external browser used for SSO')
+option('pkcs11', type : 'feature', value : 'auto', description : 'PKCS#11 support via p11-kit')
+option('stoken', type : 'feature', value : 'auto', description : 'RSA SecurID software token support')
+option('yubikey', type : 'feature', value : 'auto', description : 'Yubikey OATH support via PC/SC')
+option('vhost', type : 'feature', value : 'auto', description : 'vhost-net accelerated tun (Linux)')
