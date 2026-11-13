@@ -20,6 +20,7 @@ built as a single executable, gp, and supports TLS and ESP/UDP transports.
 
 %prep
 %autosetup
+cp src/json/LICENSE LICENSE.json-parser
 
 %build
 %meson -Dvpnc_script=/etc/vpnc/vpnc-script \
@@ -31,7 +32,7 @@ built as a single executable, gp, and supports TLS and ESP/UDP transports.
 
 %files
 %license LICENSE
-%license src/json/LICENSE
+%license LICENSE.json-parser
 %doc README.md
 %{_bindir}/gp
 
