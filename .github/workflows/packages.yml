@@ -20,7 +20,7 @@ jobs:
           - arch: arm64
             runner: ubuntu-24.04-arm
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Install build dependencies
         run: |
           sudo apt-get update
@@ -32,7 +32,7 @@ jobs:
       - name: Get package file name
         id: pkg
         run: echo "name=$(basename dist/deb/*.deb)" >> "$GITHUB_OUTPUT"
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: ${{ steps.pkg.outputs.name }}
           path: dist/deb/*.deb
@@ -50,7 +50,7 @@ jobs:
           - arch: aarch64
             runner: ubuntu-24.04-arm
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Install build dependencies
         run: |
           dnf install -y rpm-build redhat-rpm-config gcc meson tar gzip findutils \
@@ -62,7 +62,7 @@ jobs:
         run: |
           rm -f dist/rpm/RPMS/*/*-debuginfo-*.rpm dist/rpm/RPMS/*/*-debugsource-*.rpm
           echo "name=$(basename dist/rpm/RPMS/*/*.rpm)" >> "$GITHUB_OUTPUT"
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: ${{ steps.pkg.outputs.name }}
           path: dist/rpm/RPMS/*/*.rpm
@@ -75,7 +75,7 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Check tag matches meson.build version
         run: |
           version=$(sed -n "s/^[[:space:]]*version *: *'\([^']*\)'.*/\1/p" meson.build | head -n1)
@@ -83,7 +83,7 @@ jobs:
             echo "tag ${GITHUB_REF_NAME} does not match meson.build version ${version}" >&2
             exit 1
           }
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         with:
           path: artifacts
           merge-multiple: true
