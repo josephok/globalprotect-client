@@ -529,7 +529,8 @@ void openconnect_vpninfo_free(struct openconnect_info *vpninfo)
 		stoken_destroy(vpninfo->stoken_ctx);
 #endif
 	if (vpninfo->oath_secret) {
-		free_pass(&vpninfo->oath_secret);
+		clear_mem(vpninfo->oath_secret, vpninfo->oath_secret_len);
+		free(vpninfo->oath_secret);
 	}
 #ifdef HAVE_LIBPCSCLITE
 	release_pcsc_ctx(vpninfo);
